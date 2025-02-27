@@ -8,9 +8,7 @@ import booking from "../../public/booking.png"
 import klook from "../../public/klook.png"
 import trivago from "../../public/trivago.png"
 import pedia from "../../public/pedia.png"
-import trip1 from "../../public/trip1.png"
-import trip2 from "../../public/trip2.png"
-import trip3 from "../../public/trip3.png"
+
 import { FaLocationDot } from "react-icons/fa6";
 import { useState } from "react";
 import { IoMdStar } from "react-icons/io";
@@ -22,57 +20,17 @@ import rev1 from "../../public/rev1.png"
 import rev2 from "../../public/rev2.png"
 import rev3 from "../../public/rev3.png"
 import rev4 from "../../public/rev4.png"
-import epic1 from "../../public/epic1.png"
-import epic2 from "../../public/epic2.png"
-import epic3 from "../../public/epic3.png"
-import epic4 from "../../public/epic4.png"
 
 
-
-
-
-
-
-
-
-
-
-
+import travelInspiration from './data/TravelInspiration'
+import adventureTrips from "./data/AdventureTrips"
 export default function Home() {
   const { ref, inView } = useInView({
     triggerOnce: true, // Trigger only once when the component comes into view
     threshold: 0.2, // Trigger when 20% of the element is visible
   });
   
-  const adventureTrips = [
-    {
-      category: "Hot Deal 🔥",
-      image: trip1, // Replace with actual image URL
-      duration: "3 Days",
-      title: "Ride the Best Wave in Gold Coast",
-      location: "Australia",
-      price: "$450/person",
-      buttonText: "Explore More",
-    },
-    {
-      category: "Extreme Thrills 🪂",
-      image: trip2,
-      duration: "2 Days",
-      title: "Dive into Virtual Adventures",
-      location: "Tokyo, Japan",
-      price: "$250/person",
-      buttonText: "Explore More",
-    },
-    {
-      category: "Mountains & Trekking ⛰️",
-      image: trip3,
-      duration: "5 Days",
-      title: "Climb Higher, Explore Further",
-      location: "Dolomites, Italy",
-      price: "$400/person",
-      buttonText: "Explore More",
-    },
-  ];
+  
   
   const category=["Hot Deal 🔥","Extreme Thrills 🪂","Aqua Adventures 🌊","Mountains & Trekking ⛰️","More ..."]
   const [activeCategory,setActiveCategory]=useState("Hot Deal 🔥")
@@ -121,41 +79,7 @@ export default function Home() {
     },
   ];
   
-  const travelInspiration = [
-    {
-      img: epic1,
-      alt: "man-on-a-mountain",
-      title: "Embrace the Majesty of the Mountains",
-      reviews: "4.0 (3,345 Reviews)",
-      price: "$5,456.000",
-      location: "Mount Cook, New Zealand",
-    },
-    {
-      img: epic2,
-      alt: "man-with-surfboard",
-      title: "Rides the Waves, Feel the Rush",
-      reviews: "4.0 (3,345 Reviews)",
-      price: "$5,456.000",
-      location: "Bali, Indonesia",
-    },
-    {
-      img: epic3,
-      alt: "man-taking-photos",
-      title: "Dare to Explore, Lives the Adventure",
-      reviews: "4.0 (3,345 Reviews)",
-      price: "$5,456.000",
-      location: "Seoul, South Korea",
-    },
-    {
-      img: epic4,
-      alt: "diver-with-fish",
-      title: "Dive Deep, Explore the Unknown",
-      reviews:
-   "4.0 (3,345 Reviews)",
-      price: "$5,456.000",
-      location: "Los Angeles, USA",
-    }
-  ];
+ 
   
   
   
@@ -173,7 +97,7 @@ export default function Home() {
 
           <div       className="border w-full py-3 pl-3 pr-3 mt-3 rounded-full bg-white flex items-center justify-between">
             <div className="grid grid-cols-3 gap-3">
-            <select name="" id="" className="text-xs sm:text-base">
+            {/* <select name="" id="" className="text-xs sm:text-base">
   <option value="" className="text-[#7E7C7C]">Active Type</option>
 </select>
 <select name="" id="" className="text-xs sm:text-base">
@@ -181,7 +105,34 @@ export default function Home() {
 </select>
 <select name="" id="" className="text-xs sm:text-base">
   <option value="" className="text-[#7E7C7C]">Group Size</option>
+</select> */}
+<select name="activeType" id="activeType" className="text-xs sm:text-base" defaultValue="">
+  <option value="" disabled className="text-[#7E7C7C]">Active Type</option>
+  <option value="adventure">Adventure</option>
+  <option value="relaxation">Relaxation</option>
+  <option value="cultural">Cultural</option>
+  <option value="wildlife">Wildlife</option>
+  <option value="cruise">Cruise</option>
 </select>
+
+<select name="season" id="season" className="text-xs sm:text-base" defaultValue="">
+  <option value="" disabled className="text-[#7E7C7C]">Season</option>
+  <option value="summer">Summer</option>
+  <option value="winter">Winter</option>
+  <option value="spring">Spring</option>
+  <option value="autumn">Autumn</option>
+  <option value="all-year">All Year</option>
+</select>
+
+<select name="groupSize" id="groupSize" className="text-xs sm:text-base" defaultValue="">
+  <option value="" disabled className="text-[#7E7C7C]">Group Size</option>
+  <option value="1-5">1 - 5 People</option>
+  <option value="6-10">6 - 10 People</option>
+  <option value="11-20">11 - 20 People</option>
+  <option value="21+">21+ People</option>
+</select>
+
+
 
             </div>
           
@@ -271,7 +222,7 @@ export default function Home() {
 <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-3">
 {adventureTrips.map((item,index)=>{
   return<div key={index} className="shadow rounded-tr-lg rounded-tl-lg rounded-bl rounded-br pb-5">
-    <Image src={item.image} alt={item.category} className="w-full" />
+    <Image src={item.img} alt={item.category} className="w-full" />
     <div className="flex items-center justify-between mt-3 px-2">
       <p className="text-base "> {item.duration} </p>
       <p className="text-[#057A51] text-base "> {item.price} </p>
@@ -280,7 +231,7 @@ export default function Home() {
 
     <div className="flex items-center justify-between mt-3 px-2">
      <div className="flex items-center gap-2"> <FaLocationDot className="text-[#057A51]  "  /> <p className="text-base"> {item.location} </p></div>
-     <Link href={'/'}>      <button className="bg-[#057A51] text-base text-white  px-2 py-1 rounded-full text-sm"> Explore More </button>
+     <Link href={`/${item.id}`}>      <button className="bg-[#057A51] text-base text-white  px-2 py-1 rounded-full text-sm"> Explore More </button>
      </Link>
     </div>
     
@@ -441,7 +392,8 @@ export default function Home() {
       </div>
       <div className="grid md:grid-cols-4 gap-6">
       {travelInspiration.map((item, index) => (
-        <div key={index} className="bg-white flex flex-col gap-4 text-white">
+        <Link href={`/${item.id}`} key={index}>
+        <div  className="bg-white flex flex-col gap-4 text-white">
           
 
           <div className=" text-white rounded-lg ">
@@ -459,6 +411,7 @@ export default function Home() {
   </div>
           
         </div>
+        </Link>
       ))}
     </div>
 

@@ -27,11 +27,11 @@ const NavBar = () => {
   }, []);
   const routes = [
     { name: "Home", href: "/", id: "home" },
-    { name: "About", href: "/about", id: "about" },
-    { name: "Blog", href: "/blog", id: "blog" },
-    { name: "Team", href: "/team", id: "team" },
-    { name: "Projects", href: "/projects", id: "projects" },
-    { name: "Contact", href: "/contact", id: "contact" },
+    { name: "About", href: "#", id: "about" },
+    { name: "Blog", href: "#", id: "blog" },
+    { name: "Team", href: "#", id: "team" },
+    { name: "Projects", href: "#", id: "projects" },
+    { name: "Contact", href: "#", id: "contact" },
   ];
   
   return (
