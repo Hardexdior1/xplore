@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  /* color: var(--foreground); */
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  @apply text-3xl md:text-4xl lg:text-[3.375rem] font-bold lg:leading-[65px] font-[family-name:var(--font-clash-display)];
+}
+
+h2 {
+  @apply text-2xl lg:text-[2.5rem] lg:leading-[56px]  font-[family-name:var(--font-clash-medium)];
+}
+
+h3 {
+  @apply text-lg md:text-xl lg:text-2xl font-medium;
+}
+
+h4 {
+  @apply text-base md:text-lg lg:text-xl font-medium;
+}
+
+p {
+  @apply text-base lg:text-lg text-[#7E7C7C];
+}
+
+.slide{
+  max-width: 400px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+/*  */
+@layer components {
+  .container {
+    margin: auto;
+    max-width: 1440px;
+  }
+
+  @media screen and (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 1020px) {
+    .container {
+      max-width: 1000px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 1020px) {
+    .container {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+  }
+}
+
+
+
+
+/* 
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import hero from "../../public/hero-img.png"
+import { CiSearch } from "react-icons/ci";
+import viator from "../../public/viator.png"
+import booking from "../../public/booking.png"
+import klook from "../../public/klook.png"
+import trivago from "../../public/trivago.png"
+import pedia from "../../public/pedia.png"
+import trip1 from "../../public/trip1.png"
+import trip2 from "../../public/trip2.png"
+import trip3 from "../../public/trip3.png"
+import { FaLocationDot } from "react-icons/fa6";
+import { GiWaterSplash } from "react-icons/gi";
+import { useState } from "react";
+
+
+
+
+
+
+
+export default function Home() {
+ 
+  
+  const adventureTrips = [
+    {
+      category: "Hot Deal 🔥",
+      image: trip1, // Replace with actual image URL
+      duration: "3 Days",
+      title: "Ride the Best Wave in Gold Coast",
+      location: "Australia",
+      price: "$450/person",
+      buttonText: "Explore More",
+    },
+    {
+      category: "Extreme Thrills 🪂",
+      image: trip2,
+      duration: "2 Days",
+      title: "Dive into Virtual Adventures",
+      location: "Tokyo, Japan",
+      price: "$250/person",
+      buttonText: "Explore More",
+    },
+    {
+      category: "Mountains & Trekking ⛰️",
+      image: trip3,
+      duration: "5 Days",
+      title: "Climb Higher, Explore Further",
+      location: "Dolomites, Italy",
+      price: "$400/person",
+      buttonText: "Explore More",
+    },
+  ];
+  
+  const category=["Hot Deal 🔥","Extreme Thrills🪂","Mountains & Trekking ⛰️"]
+  const [activeCategory,setActiveCategory]=useState("Hot Deal 🔥")
+  // const category = new Set(['All', ...adventureTrips.map((item) => item.category)]);
+
+  console.log(category)
+
+const toggleCategory=(item)=>{
+  setActiveCategory(item)
+}
+
+  
+  return (
+    <main className="grid gap-14 md:gap-20">
+
+     <div>
+     <section className="container  my-6 grid gap-6 items-center   md:grid-cols-2 ">
+        <div className="flex flex-col gap-5 bg-white">
+          <h1 className="">Make Memories That Last  a Lifetime</h1>
+
+          <p>From sky-high thrills to deep-sea adventures, discover and book unforgettable experiences worldwide.</p>
+
+          <div       className="border w-full py-3 pl-3 pr-3 mt-3 rounded-full bg-white flex items-center justify-between">
+            <div className="grid grid-cols-3 gap-3">
+            <select name="" id="" className="text-xs sm:text-base">
+  <option value="" className="text-[#7E7C7C]">Active Type</option>
+</select>
+<select name="" id="" className="text-xs sm:text-base">
+  <option value="" className="text-[#7E7C7C]">Season</option>
+</select>
+<select name="" id="" className="text-xs sm:text-base">
+  <option value="" className="text-[#7E7C7C]">Group Size</option>
+</select>
+
+            </div>
+          
+   <div className="bg-[#057A51] rounded-full p-1">
+   <CiSearch size={30} className="cursor-pointer text-white"/>
+   </div>
+
+   </div>
+        </div>
+
+        <div > 
+
+          <Image src={hero} alt="man-and-woman-sky-diving" className=" object-cover" />
+        </div>
+        <div>
+        
+        </div>
+
+      </section>
+
+      <section className="container flex items-center justify-center gap-8 mt-5"> 
+       <div > 
+
+          <Image src={viator} alt="viator-logo" className="w-24 h-auto"  />
+        </div>
+         <div> 
+
+          <Image src={booking} alt="booking-logo"  />
+        </div>
+         <div> 
+
+          <Image src={klook} alt="klook-logo" />
+        </div>
+         <div> 
+
+          <Image src={trivago} alt="trivago-logo" />
+        </div>
+         <div> 
+
+          <Image src={pedia} alt="pedia-logo" />
+        </div>
+        </section>
+     </div>
+
+
+
+
+     <section className="container flex flex-col gap-8">
+      <div className="flex flex-col gap-5 items-center justify-center">
+        <h5 className="text-[#057A51] font-semibold text-center"> BEST PACKAGE </h5>
+        <h2 className="text-black font-semibold text-center">Find Your Next Adrenaline Rush</h2>
+      </div>
+
+    
+     <div className="grid grid-cols-4">
+     { category.map((item,index)=>{
+        return <div key={index} >
+          <h5 className={`font-semibold cursor-pointer ${activeCategory==item?` #057A51`:``}`} onClick={(()=>{
+            toggleCategory(item)
+          })}> {item} </h5>
+
+        </div>
+        
+      })}
+     </div>
+<div className="grid gap-6 md:grid-cols-3 lg:grid-cols-3">
+{adventureTrips.map((item,index)=>{
+  return<div key={index} className="shadow rounded-tr-lg rounded-tl-lg rounded-bl rounded-br pb-5">
+    <Image src={item.image} alt={item.category} className="w-full" />
+    <div className="flex items-center justify-between mt-3 px-2">
+      <p className="text-base "> {item.duration} </p>
+      <p className="text-[#057A51] text-base "> {item.price} </p>
+    </div>
+    <h4 className="text-black font-semibold mb-4 mt-2 px-2"> {item.title} </h4>
+
+    <div className="flex items-center justify-between mt-3 px-2">
+     <div className="flex items-center gap-2"> <FaLocationDot className="text-[#057A51]  "  /> <p className="text-base"> {item.location} </p></div>
+      <button className="bg-[#057A51] text-base text-white  px-2 py-1 rounded-full text-sm"> Explore More </button>
+    </div>
+    
+
+    
+  </div>
+})}
+</div>
+
+
+
+     </section>
+
+      
+     
+
+      <a href=""> REFRESH </a>
+    </main>
+  );
+} */
