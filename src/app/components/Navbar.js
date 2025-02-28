@@ -71,7 +71,7 @@ const NavBar = () => {
 </ul>
 
         <div>
-          <Link href="/about">
+          <Link href="#">
             <button className="bg-[#057A51] rounded-full text-white px-6 py-2 font-bold hover:bg-white hover:text-[#057A51] hover:px-5 hover:border border-[#057A51] transition duration-300">
              SIgn Up
             </button>
@@ -132,7 +132,10 @@ const NavBar = () => {
             ? "text-white font-bold"
             : " font-bold text-gray-200"
         }
-        onClick={() => setActive(route.id)}
+        onClick={() =>{
+          setActive(route.id)   
+          toggleNav()
+        }}
       >
         {route.name}
       </Link>
@@ -141,7 +144,7 @@ const NavBar = () => {
 
   
     <li>
-      <Link href="#get-started">
+      <Link href="#" onClick={toggleNav }>
         <button className="bg-white rounded text-black px-6 py-2 font-bold hover:bg-black transition duration-300 hover:text-white">
           Get Started
         </button>

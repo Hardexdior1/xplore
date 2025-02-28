@@ -1,4 +1,6 @@
+
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import hero from "../../public/hero-img.png"
@@ -30,17 +32,26 @@ export default function Home() {
     threshold: 0.2, // Trigger when 20% of the element is visible
   });
   
+  const [filteredTrips, setFilteredTrips] = useState(adventureTrips); 
+  const toggleCategory = (category) => {
+    if (category === "All") {
+      setFilteredTrips(adventureTrips); // Show all trips when 'All' is clicked
+    } else {
+      const filteredData = adventureTrips.filter((trip) => trip.category === category);
+      setFilteredTrips(filteredData.length > 0 ? filteredData : adventureTrips);
+    }
+    setActiveCategory(category)
+
+  };
+
   
-  
-  const category=["Hot Deal 🔥","Extreme Thrills 🪂","Aqua Adventures 🌊","Mountains & Trekking ⛰️","More ..."]
+  const category=["Hot Deal 🔥","Extreme Thrills 🪂","Aqua Adventures 🌊", "Mountains & Trekking  ⛰️"," More ..."]
   const [activeCategory,setActiveCategory]=useState("Hot Deal 🔥")
   // const category = new Set(['All', ...adventureTrips.map((item) => item.category)]);
 
   console.log(activeCategory)
 
-  const toggleCategory=(item)=>{
-    setActiveCategory(item)
-  }
+ 
   const reviews = [
     {
       id: 1,
@@ -97,17 +108,9 @@ export default function Home() {
 
           <div       className="border w-full py-3 pl-3 pr-3 mt-3 rounded-full bg-white flex items-center justify-between">
             <div className="grid grid-cols-3 gap-3">
-            {/* <select name="" id="" className="text-xs sm:text-base">
-  <option value="" className="text-[#7E7C7C]">Active Type</option>
-</select>
-<select name="" id="" className="text-xs sm:text-base">
-  <option value="" className="text-[#7E7C7C]">Season</option>
-</select>
-<select name="" id="" className="text-xs sm:text-base">
-  <option value="" className="text-[#7E7C7C]">Group Size</option>
-</select> */}
+           
 <select name="activeType" id="activeType" className="text-xs sm:text-base" defaultValue="">
-  <option value="" disabled className="text-[#7E7C7C]">Active Type</option>
+  <option value="" disabled>Active Type</option>
   <option value="adventure">Adventure</option>
   <option value="relaxation">Relaxation</option>
   <option value="cultural">Cultural</option>
@@ -116,7 +119,7 @@ export default function Home() {
 </select>
 
 <select name="season" id="season" className="text-xs sm:text-base" defaultValue="">
-  <option value="" disabled className="text-[#7E7C7C]">Season</option>
+  <option value="" disabled>Season</option>
   <option value="summer">Summer</option>
   <option value="winter">Winter</option>
   <option value="spring">Spring</option>
@@ -125,7 +128,7 @@ export default function Home() {
 </select>
 
 <select name="groupSize" id="groupSize" className="text-xs sm:text-base" defaultValue="">
-  <option value="" disabled className="text-[#7E7C7C]">Group Size</option>
+  <option value="" disabled>Group Size</option>
   <option value="1-5">1 - 5 People</option>
   <option value="6-10">6 - 10 People</option>
   <option value="11-20">11 - 20 People</option>
@@ -186,41 +189,29 @@ export default function Home() {
         <h2 className="text-black font-semibold text-center">Find Your Next Adrenaline Rush</h2>
       </div>
 
-      <div className="hidden md:flex justify-center items-center px-4">
-    <div className="grid grid-cols-5 items-center gap-3 min-w-[600px]">
-      {category.map((item, index) => (
-        <div
-          key={index}
-          className={`text-center py-1 inline-block ${
-            item !== "More ..." ? "border-r-4 border-[#7E7C7C]" : "border-r-4 border-[#ffffff]"
+     
+<div className="flex justify-center items-center px-4">
+  <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5  gap-1 min-w-[300px] sm:min-w-[500px] md:min-w-[600px] md:items-center md:gap-3">
+    {category.map((item, index) => (
+      <div key={index} className="relative text-center py-1 inline-block w-full">
+        <h5
+          className={`font-semibold text-sm cursor-pointer md:text-lg ${
+            activeCategory === item ? "text-[#057A51]" : "text-[#7E7C7C]"
           }`}
+          onClick={() => toggleCategory(item)}
         >
-          <h5
-            className={`font-semibold cursor-pointer ${
-              activeCategory === item ? "text-[#057A51]" : "text-[#7E7C7C]"
-            }`}
-            onClick={() => toggleCategory(item)}
-          >
-            {item}
-          </h5>
-        </div>
-      ))}
+          {item}
+        </h5>
+       
+      </div>
+    ))}
   </div>
 </div>
 
-{/*     
-     <div className="grid grid-cols-5 items-center gap-3 justify-center">
-     { category.map((item,index)=>{
-        return <div key={index} className={`text-center py-1 inline-block ${item!=="More ..."?`border-r-4 border-[#7E7C7C]`:`border-r-4 border-[#ffffff`}` }>
-          <h5 className={`font-semibold cursor-pointer ${activeCategory==item?` text-[#057A51]`:`text-[#7E7C7C]`}`} onClick={(()=>{
-            toggleCategory(item)
-          })}> {item} </h5>
-        </div>
-        
-      })}
-     </div> */}
+
+
 <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-3">
-{adventureTrips.map((item,index)=>{
+{filteredTrips.map((item,index)=>{
   return<div key={index} className="shadow rounded-tr-lg rounded-tl-lg rounded-bl rounded-br pb-5">
     <Image src={item.img} alt={item.category} className="w-full" />
     <div className="flex items-center justify-between mt-3 px-2">
@@ -335,24 +326,7 @@ export default function Home() {
 </div>
 
 
-{/* 
-<div className="grid grid-cols-2 gap-2 md:hidden">
-  <div className="shadow bg-[#AEA190] text-white rounded-lg pb-3 ">
-    <div className="md:max-h-[340px] overflow-hidden">
-      <Image src={thrills1} alt="man-on-a-mountain" className="w-full h-full object-cover" />
-    </div>
-    <h5 className=" mt-2 px-3 font-semibold text-sm">Breathtaking Height</h5>
-    <span className="text-sm text-white px-3 flex items-center gap-1 "> <IoMdStar className="text-[#FFB107] text-lg" /> 4.0 (3,345 Reviews)</span>    
-  </div>
 
-  <div className="shadow bg-[#AEA190] text-white rounded-lg pb-3 ">
-    <div className="md:max-h-[340px] overflow-hidden">
-      <Image src={thrills2} alt="golden-sand" className="w-full h-full object-cover" />
-    </div>
-    <h5 className=" mt-2 px-3 font-semibold text-sm">Golden Sand, Endless Waves</h5>
-    <span className="text-sm text-white px-3 flex items-center gap-1 "> <IoMdStar className="text-[#FFB107] text-lg" /> 3.2 (1,547 Reviews)</span>    
-  </div>
-</div> */}
 
 
 
@@ -363,7 +337,6 @@ export default function Home() {
 
 
 
-     {/* bg-[#AEA190] */}
      {/* epic spot */}
      <section className="container  bg-[#fff]">
       <div className=" my-6 grid gap-6 items-center   md:grid-cols-2">

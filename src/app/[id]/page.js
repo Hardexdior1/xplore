@@ -16,6 +16,9 @@ const Page = () => {
 
   if (!adventure) return <p>Loading...</p>;
 
+
+
+
   return (
     <div className="container mx-auto py-20">
               <ToastContainer />
@@ -44,12 +47,26 @@ const Page = () => {
           <input type="email" placeholder="Email Address" className="w-full p-2 border rounded-md" />
           <input type="number" placeholder="Number of Travelers" className="w-full p-2 border rounded-md" />
           <textarea placeholder="Additional Notes" className="w-full p-2 border rounded-md"></textarea>
-          <button className="bg-[#057A51] text-white px-4 py-2 rounded-md w-full" onClick={(()=>{
-                toast.success("Your message has been sent successfully!");
+          <button
+  className="bg-[#057A51] text-white px-4 py-2 rounded-md w-full"
+  onClick={(e) => {
+    const form = e.target.closest("form");
+    const name = form.querySelector('input[type="text"]').value.trim();
+    const email = form.querySelector('input[type="email"]').value.trim();
+    const travelers = form.querySelector('input[type="number"]').value.trim();
+    const notes = form.querySelector("textarea").value.trim();
 
-          })}>
-            Submit Booking
-          </button>
+    if (!name || !email || !travelers || !notes) {
+      toast.error("All fields are required!");
+      return;
+    }
+
+    toast.success("Your tour has been successfully booked!");
+  }}
+>
+  Submit Booking
+</button>
+
         </form>
       </div>
     </div>
