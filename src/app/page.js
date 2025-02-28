@@ -109,7 +109,7 @@ export default function Home() {
           <div       className="border w-full py-3 pl-3 pr-3 mt-3 rounded-full bg-white flex items-center justify-between">
             <div className="grid grid-cols-3 gap-3">
            
-<select name="activeType" id="activeType" className="text-xs sm:text-base" defaultValue="">
+<select name="activeType" id="activeType" className="text-xs bg-white sm:text-base" defaultValue="">
   <option value="" disabled>Active Type</option>
   <option value="adventure">Adventure</option>
   <option value="relaxation">Relaxation</option>
