@@ -107,7 +107,7 @@ export default function Home() {
           <p>From sky-high thrills to deep-sea adventures, discover and book unforgettable experiences worldwide.</p>
 
           <div       className="border w-full py-3 pl-3 pr-3 mt-3 rounded-full bg-white flex items-center justify-between">
-            <div className="grid grid-cols-3 gap-3">
+            {/* <div className="grid grid-cols-3 gap-3">
            
 <select name="activeType" id="activeType" className="text-xs bg-white sm:text-base" defaultValue="">
   <option value="" disabled>Active Type</option>
@@ -137,7 +137,50 @@ export default function Home() {
 
 
 
-            </div>
+            </div> */}
+          <div className="grid grid-cols-3 gap-3">
+  <select
+    name="activeType"
+    id="activeType"
+    className="text-xs bg-white sm:text-base appearance-none bg-[url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='black'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;)] bg-no-repeat bg-right pr-8"
+    defaultValue=""
+  >
+    <option value="" disabled>Active Type</option>
+    <option value="adventure">Adventure</option>
+    <option value="relaxation">Relaxation</option>
+    <option value="cultural">Cultural</option>
+    <option value="wildlife">Wildlife</option>
+    <option value="cruise">Cruise</option>
+  </select>
+
+  <select
+    name="season"
+    id="season"
+    className="text-xs sm:text-base appearance-none bg-[url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='black'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;)] bg-no-repeat bg-right pr-8"
+    defaultValue=""
+  >
+    <option value="" disabled>Season</option>
+    <option value="summer">Summer</option>
+    <option value="winter">Winter</option>
+    <option value="spring">Spring</option>
+    <option value="autumn">Autumn</option>
+    <option value="all-year">All Year</option>
+  </select>
+
+  <select
+    name="groupSize"
+    id="groupSize"
+    className="text-xs sm:text-base appearance-none bg-[url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='black'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E&quot;)] bg-no-repeat bg-right pr-8"
+    defaultValue=""
+  >
+    <option value="" disabled>Group Size</option>
+    <option value="1-5">1 - 5 People</option>
+    <option value="6-10">6 - 10 People</option>
+    <option value="11-20">11 - 20 People</option>
+    <option value="21+">21+ People</option>
+  </select>
+</div>
+
           
    <div className="bg-[#057A51] rounded-full p-1">
    <CiSearch size={30} className="cursor-pointer text-white"/>
